@@ -18,7 +18,32 @@ export const setupFishDataScene = async (container: Container) => {
       fill: 0xffffff,
     },
   });
+  //
+  //
+  //
+  //
+  interface fishData {
+    fishName: string;
+    scientificName: string;
+    type: string;
+    //the rest of the data
+  };
+  //indexing
+  const fishes: Record<string, fishData> = {};
 
+  jsonData.forEach((fishObject) => {
+    const fishData: {[key: string]: any} = {
+    scientificName: fishObject["Scientific Name"],
+    type: fishObject["Type"],
+    //fill other fish data
+  };
+
+    fishes[fishObject["Fish Name"]] = fishData.fishName;
+  });
+  //store in localforage
+  //
+  //
+  //
   container.addChild(jsonText);
 };
 
