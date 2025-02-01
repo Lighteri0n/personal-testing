@@ -9,9 +9,9 @@ import localforage from 'localforage';
 * just a scene to test csv to json library
 */
 export const setupFishDataScene = async (container: Container) => {
-  const csvText = await loadCSV('data/test-data.csv');
+  const csvText = await loadCSV('data/test-data.tsv');
 
-  const jsonData = ConvertCsvToJson.fieldDelimiter(',').csvStringToJson(csvText);
+  const jsonData = ConvertCsvToJson.fieldDelimiter('\t').csvStringToJson(csvText);
 
    const scrollBox = new ScrollBox({
     background: 0x000000,
