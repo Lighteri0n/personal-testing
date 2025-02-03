@@ -1,5 +1,5 @@
 import { Application, Container, Text } from "pixi.js";
-import { createButton } from "./utils";
+import { createButton } from "../utils";
 import { setupFishDataScene } from "./fish-data-scene";
 
 /*

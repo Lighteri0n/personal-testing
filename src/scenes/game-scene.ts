@@ -1,5 +1,5 @@
 import { Application, Container, Graphics, Text } from "pixi.js";
-import { createButton } from "./utils";
+import { createButton } from "../utils";
 import { setupShopScene } from "./shop-scene";
 
 /*

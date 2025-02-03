@@ -1,5 +1,5 @@
 import { Application, Container, Text } from "pixi.js";
-import { createButton, notYetImplemented } from "./utils";
+import { createButton, notYetImplemented } from "../utils";
 
 /*
 * Main menu scene
@@ -9,12 +9,11 @@ import { createButton, notYetImplemented } from "./utils";
 export const setupMainMenuScene = (params: {
   app: Application,
   container: Container,
-  goToGameScene: () => void,
-  goToSettingsScene: () => void,
+  callback: Callback,
 }) => {
-  const { app, container, goToGameScene, goToSettingsScene } = params;
+  const { app, container, callback } = params;
   const titleText = new Text({
-    text: 'Fishing game title',
+    text: `Kronii's Ocean Odyssey`,
     style: {
       fontFamily: "Arial",
       fontSize: 50,
@@ -27,22 +26,27 @@ export const setupMainMenuScene = (params: {
   titleText.y = 150;
   container.addChild(titleText);
 
-  addButtons({ app, container, goToGameScene, goToSettingsScene });
+  addButtons({ app, container, callback });
 };
 
 const addButtons = (params : {
   app: Application,
   container: Container,
-  goToGameScene: () => void,
-  goToSettingsScene: () => void,
+  callback: Callback,
 }) => {
-  const { app, container, goToGameScene, goToSettingsScene } = params;
+  const { app, container, callback } = params;
 
-  addCenterButtons(app, container, goToGameScene, goToSettingsScene);
+  addCenterButtons({app, container, callback});
   addBottomButtons(app, container);
 };
 
-const addCenterButtons = (app: Application, container: Container, goToGameScene: () => void, goToSettingsScene: () => void) => {
+const addCenterButtons = (params: {
+  app: Application, 
+  container: Container,
+  callback: Callback,
+}) => {
+
+  const { app, container, callback } = params;
   const centerButtonsContainer = new Container();
   container.addChild(centerButtonsContainer);
   const startButton = createButton({
@@ -50,7 +54,7 @@ const addCenterButtons = (app: Application, container: Container, goToGameScene:
     buttonColor: 0x0011ff,
     x: app.screen.width / 2 - 100,
     y: (centerButtonsContainer.children.length * 100) + 300,
-    onClick: goToGameScene,
+    onClick: callback.goToGameScene,
   });
   centerButtonsContainer.addChild(startButton);
 
@@ -59,21 +63,18 @@ const addCenterButtons = (app: Application, container: Container, goToGameScene:
     buttonColor: 0x466494,
     x: app.screen.width / 2 - 100,
     y: (centerButtonsContainer.children.length * 100) + 300,
-    onClick: goToSettingsScene,
+    onClick: callback.goToSettingsScene,
   });
   centerButtonsContainer.addChild(settingsButton);
 
-  const cheatButton = createButton({
-    label: 'Cheat',
+  const collectiblesButton = createButton({
+    label: 'Collectibles',
     buttonColor: 0x466494,
     x: app.screen.width / 2 - 100,
     y: (centerButtonsContainer.children.length * 100) + 300,
-    onClick: () => {
-      // todo
-      notYetImplemented();
-    },
+    onClick: callback.goToCollectiblesScene,
   });
-  centerButtonsContainer.addChild(cheatButton);
+  centerButtonsContainer.addChild(collectiblesButton);
 
   const exitButton = createButton({
     label: 'Exit',
@@ -114,4 +115,22 @@ const addBottomButtons = (app: Application, container: Container) => {
     },
   });
   bottomButtonsContainer.addChild(howToPlayButton);
+};
+
+export class Callback {
+
+  goToGameScene: () => void;
+  goToSettingsScene: () => void;
+  goToCollectiblesScene: () => void;
+
+  constructor(params : {
+    goToGameScene: () => void,
+    goToSettingsScene: () => void,
+    goToCollectiblesScene: () => void,
+  }) {
+    const { goToGameScene, goToSettingsScene, goToCollectiblesScene } = params;
+    this.goToGameScene = goToGameScene;
+    this.goToSettingsScene = goToSettingsScene;
+    this.goToCollectiblesScene = goToCollectiblesScene;
+  }
 };
