@@ -1,5 +1,5 @@
 import { Application, Container, Text } from "pixi.js";
-import { createButton } from "../utils";
+import { createInteractiveText } from "../utils";
 import { setupFishDataScene } from "./fish-data-scene";
 
 /*
@@ -39,7 +39,7 @@ const addButtons = (params : {
 }) => {
   const { app, container, fishDataSceneContainer, changeScene } = params;
 
-  const fishDataButton = createButton({
+/*  const fishDataButton = createButton({
     label: 'Fish Data',
     buttonColor: 0x466494,
     x: app.screen.width / 2 - 100,
@@ -47,7 +47,16 @@ const addButtons = (params : {
     onClick: () => {
       setupFishDataScene(fishDataSceneContainer);
       changeScene(container, fishDataSceneContainer);
-    },
+    },*/
+    const fishDataButton = createInteractiveText({
+      label: 'Fish Data',
+      textColor: 0x466494,
+      x: app.screen.width / 2 - 100,
+      y: (container.children.length * 100) + 360,
+      onClick: () => {
+        setupFishDataScene(fishDataSceneContainer);
+        changeScene(container, fishDataSceneContainer);
+      },
   });
   container.addChild(fishDataButton);
 };
