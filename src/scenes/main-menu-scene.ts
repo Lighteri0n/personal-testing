@@ -49,13 +49,7 @@ const addCenterButtons = (params: {
   const { app, container, callback } = params;
   const centerButtonsContainer = new Container();
   container.addChild(centerButtonsContainer);
-  /*const startButton = createButton({
-    label: 'Start',
-    buttonColor: 0x0011ff,
-    x: app.screen.width / 2 - 100,
-    y: (centerButtonsContainer.children.length * 100) + 300,
-    onClick: callback.goToGameScene,
-  });*/
+
   const startButton = createInteractiveText({
     label: 'Start',
     textColor: 0x0011ff,
@@ -65,13 +59,6 @@ const addCenterButtons = (params: {
   })
   centerButtonsContainer.addChild(startButton);
 
-  /*const settingsButton = createButton({
-    label: 'Settings',
-    buttonColor: 0x466494,
-    x: app.screen.width / 2 - 100,
-    y: (centerButtonsContainer.children.length * 100) + 300,
-    onClick: callback.goToSettingsScene,
-  });*/
   const settingsButton = createInteractiveText({
     label: 'Settings',
     textColor: 0x466494,
@@ -81,13 +68,6 @@ const addCenterButtons = (params: {
   });
   centerButtonsContainer.addChild(settingsButton);
 
-  /*const collectiblesButton = createButton({
-    label: 'Collectibles',
-    buttonColor: 0x466494,
-    x: app.screen.width / 2 - 100,
-    y: (centerButtonsContainer.children.length * 100) + 300,
-    onClick: callback.goToCollectiblesScene,
-  });*/
   const collectiblesButton = createInteractiveText({
     label: 'Collectibles',
     textColor: 0x466494,
@@ -97,16 +77,6 @@ const addCenterButtons = (params: {
   });
   centerButtonsContainer.addChild(collectiblesButton);
 
-  /*const exitButton = createButton({
-    label: 'Exit',
-    buttonColor: 0x466494,
-    x: app.screen.width / 2 - 100,
-    y: (centerButtonsContainer.children.length * 100) + 300,
-    onClick: () => {
-      // TODO exit the game instead of showing this alert
-      alert("Exiting the game... (function not added yet)");
-    },
-  });*/
   const exitButton = createInteractiveText({
     label: 'Exit',
     textColor: 0x466494,
@@ -124,16 +94,6 @@ const addBottomButtons = (app: Application, container: Container) => {
   const bottomButtonsContainer = new Container();
   container.addChild(bottomButtonsContainer);
 
-  /*const gameInfoButton = createButton({
-    label: 'Game info',
-    buttonColor: 0x466494,
-    x: app.screen.width / 2 - 100 - 400,
-    y: 600,
-    onClick: () => {
-      // todo
-      notYetImplemented();
-    },
-  });*/
   const gameInfoButton = createInteractiveText({
     label: 'Game info',
     textColor: 0x466494,
@@ -145,16 +105,6 @@ const addBottomButtons = (app: Application, container: Container) => {
     },
   })
   bottomButtonsContainer.addChild(gameInfoButton);
-  /*const howToPlayButton = createButton({
-    label: 'How to play',
-    buttonColor: 0x466494,
-    x: app.screen.width / 2 - 100 + 400,
-    y: 600,
-    onClick: () => {
-      // todo
-      notYetImplemented();
-    },
-  });*/
   const howToPlayButton = createInteractiveText({
     label: 'How to play',
     textColor: 0x466494,
